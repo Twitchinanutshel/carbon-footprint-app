@@ -4,18 +4,25 @@
 }
 
 body {
-    background-color: rgb(226, 255, 182);
-    color: rgb(120, 199, 0);
+    color: rgb(112, 187, 0);
+    background-image: linear-gradient();
     overflow: hidden;
+    background-color: rgb(207, 255, 212);
 }
 
-header h1 {
+h1 {
+    font-size: 40px;
+
+    text-align: center;
+}
+
+.wheel-sect {
     display: flex;
+    align-items: center;
     justify-content: center;
-    font-size: 50px;
+    margin-right: 500px;
+    
 }
-
-
 
 .wheel-container {
     margin: 0;
@@ -24,8 +31,9 @@ header h1 {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
     padding-bottom: 200px;
+    position: absolute;
+    top: 10%;
 }
 
 .result-container {
@@ -97,8 +105,8 @@ header h1 {
 
 .arrow {
     position: absolute;
-    top: 16%;
-    left: 50%;
+    top: 32.5%;
+    left: 95%;
     transform: translateX(-50%);
     color: white;
     z-index: 20;
@@ -106,7 +114,7 @@ header h1 {
 
 #spin {
     position: absolute;
-    top: 53%;
+    top: 38%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
@@ -122,3 +130,4 @@ header h1 {
     outline: none;
     color: rgb(255, 255, 255);
 }
+
