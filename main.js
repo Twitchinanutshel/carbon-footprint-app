@@ -1,15 +1,32 @@
 const resultContainer = document.querySelector('.result-container'); //container for spin
 const spinBtn = document.getElementById('spin'); //btn for .onclick
-let number = Math.ceil(Math.random() * 5000 + 3000); //number variable for random spin speed
 const arrow = document.querySelector('.arrow'); // arrow variable used for the animation that makes arrow have a 'hitting' effect on the wheel
 const sidebarImage = document.getElementById('sidebar-i')
+let x = 3000
+let y = 9999
+let results = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight']
+let previousDeg = 0
 
 
 
-spinBtn.onclick = function() {
-    resultContainer.style.transform = 'rotate(' + number + 'deg)';
-    number += Math.ceil(Math.random() * 5000 + 3000);
-};
+
+spinBtn.addEventListener('click', function(){
+    spinBtn.disabled = true
+    let deg = Math.floor(Math.random() * (x - y)) + y;
+    let deg_off = (deg % 360) - 21;
+    let widx = Math.floor((deg_off / 45));
+    widx = (0 <= widx) ? widx : 7;
+    resultContainer.style.transform = `rotate(${deg}deg)`;
+    console.log(deg)
+    console.log(deg_off)
+    console.log(widx)
+    spinBtn.style.cursor = 'default'
+    setTimeout(() => {
+        spinBtn.disabled = false
+        spinBtn.style.cursor = 'pointer'
+    }, 5000)
+
+})
 
 
 

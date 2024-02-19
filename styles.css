@@ -165,10 +165,9 @@ header h1 {
 
 .sidebarTran {
     transform: rotate(90deg);
-
 }
 
-i {
+#sidebar-i {
     transition: all 0.3s linear;
 
 }
