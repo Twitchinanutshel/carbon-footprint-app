@@ -1,4 +1,5 @@
-const arrow = document.querySelector('.arrow'); // arrow variable used for the animation that makes arrow have a 'hitting' effect on the wheel
+const spinBtn = document.getElementById('spinBtn')
+const resetBtn = document.getElementById('resetBtn')
 const sidebarImage = document.getElementById('sidebar-i')
 const sidebarBtn = document.querySelector('.sidebar-toggle') // for toggling the sidebar
 const sidebar = document.querySelector('.sidebar') // the sidebar
@@ -17,13 +18,61 @@ document.addEventListener('click', function(event) {
     }
 });
 
+
+let segments = [
+    { fillStyle: '#c3ff92', text: 'Segment 1' },
+    { fillStyle: '#98deab', text: 'Segment 2' },
+    { fillStyle: '#36c06b', text: 'Segment 3' },
+    { fillStyle: '#68c362', text: 'Segment 4' },
+    { fillStyle: '#c3ff92', text: 'Segment 1' },
+    { fillStyle: '#98deab', text: 'Segment 2' },
+    { fillStyle: '#36c06b', text: 'Segment 3' },
+    { fillStyle: '#68c362', text: 'Segment 4' }
+];
+
 let theWheel = new Winwheel({
-    'numSegments' : 4,
-    'segments'    :
-    [
-        {'fillStyle' : '#eae56f', 'text' : 'Segment 1'},
-        {'fillStyle' : '#89f26e', 'text' : 'Segment 2'},
-        {'fillStyle' : '#7de6ef', 'text' : 'Segment 3'},
-        {'fillStyle' : '#e7706f', 'text' : 'Segment 4'}
-    ]
+    'numSegments' : 8,
+    'pointerAngle': 90, 
+    'segments'    : segments,
+    'outerRadius' : 245,
+    'animation' :                   
+        {
+            'type'     : 'spinToStop',  
+            'duration' : 5,             
+            'spins'    : 8,
+            'callbackFinished' : winAnimation,
+        }
+    
 });
+
+function winAnimation()
+{
+    let winningSegmentNumber = theWheel.getIndicatedSegmentNumber();
+    theWheel.segments[winningSegmentNumber].fillStyle = 'yellow';
+    theWheel.draw();
+}
+
+
+
+function spinWheel(){
+    theWheel.startAnimation();
+    spinBtn.disabled = true;
+    spinBtn.style.cursor = 'default';
+    
+}
+
+function resetWheel(){
+    theWheel.stopAnimation(false);
+    theWheel.rotationAngle = 0;
+    for (let i = 1; i <= theWheel.numSegments; i++) {
+        theWheel.segments[i].fillStyle = segments[i - 1].fillStyle;
+    }
+    checkIfClicked = true;
+    spinBtn.disabled = false;
+    spinBtn.style.cursor = 'pointer';
+    theWheel.draw();
+
+};
+
+
+
